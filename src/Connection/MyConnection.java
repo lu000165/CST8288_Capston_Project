@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement; 
   
-// This class can be used to initialize the database connection 
+// This class can be used to initialize the database connection
+//might need to find a web database
 public class MyConnection { 
     public static Connection initDB() 
         throws SQLException, ClassNotFoundException 
