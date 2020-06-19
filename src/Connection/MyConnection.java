@@ -19,35 +19,41 @@ public class MyConnection {
 		String servername = "jdbc:mysql://localhost:3306/";
 		String username ="root";
 		String password ="";
-		String dbname="";
+		String dbname="capstone_project";
   
         Class.forName(dbDriver); 
         Connection con=(Connection) DriverManager.getConnection(servername+dbname,username,password);
         return con; 
     }
 
-	public static void edit(Connection con, String title, String content, int id) throws SQLException {
+	public static void edit(Connection con, String name, String description, int price,int id) throws SQLException {
 		// TODO Auto-generated method stub
 		Statement statement =(Statement) con.createStatement();
-		String sql ="update textlog set title='"+title+"', content ='"+content +"' where id="+id;
+		String sql ="update menu set name='"+name+"', description ='"+description +"' , price ='"+price +"'where id="+id;
 		System.out.println(sql);
 		statement.executeUpdate(sql);
 	}
 
-	public static void create(Connection con, String title, String content) throws SQLException {
+	public static void create(Connection con, String name, String description, int price) throws SQLException {
 		// TODO Auto-generated method stub
-		PreparedStatement st = (PreparedStatement) con 
-                .prepareStatement("insert into textlog (title,content) values(?, ?)"); 
-
-         st.setString(1, title); 
-         st.setString(2, content);
-         st.executeUpdate(); 
+		Statement statement =(Statement) con.createStatement();
+		
+		String sql = "INSERT INTO `menu`( `name`, `description`, `price`) VALUES ( "+name+ " , " +description+ " ,"+ price+ ")";
+		statement.executeUpdate(sql);
 	}
 
 	public static void delete(Connection con, int id) throws SQLException {
 		// TODO Auto-generated method stub
 		Statement statement =(Statement) con.createStatement();
-		String sql ="delete from textlog where id="+id;
+		String sql ="delete from menu where id="+id;
 		statement.executeUpdate(sql);
 	} 
+	
+	public static void addCart(Connection con, int tableid, String name, int quantity, int price) throws SQLException {
+		// TODO Auto-generated method stub
+		Statement statement =(Statement) con.createStatement();
+		
+		String sql = "INSERT INTO `orderitem`( `tableid`, `name`, `quantity`, `price`) VALUES ( "+tableid+ " , "+name+ " , " +quantity+ " ,"+ price+ ")";
+		statement.executeUpdate(sql);
+	}
 } 

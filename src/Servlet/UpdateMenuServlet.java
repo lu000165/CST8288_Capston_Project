@@ -25,7 +25,7 @@ import objects.OrderLineItem;
 import objects.MenuItem;
 
 //@WebServlet("/postLog")
-public class MenuServlet extends HttpServlet{
+public class UpdateMenuServlet extends HttpServlet{
 	
 	List<OrderLineItem> lineitem= new ArrayList<OrderLineItem>();
 	
@@ -33,29 +33,27 @@ public class MenuServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException{
 	
 		
-		String submitB=request.getParameter("addCart");
+		String submitB=request.getParameter("submit");
 		String editB=request.getParameter("edit");
 		String deleteB=request.getParameter("delete");
-		
 
-		
-		String tableNumberString =request.getParameter("tableNumber");
 		String name= request.getParameter("title");
 		String des=request.getParameter("content");
 		String priceString= request.getParameter("price");
-		String quantityString =request.getParameter("quantity");
+		String idString = request.getParameter("id");
+	
 		int price = Integer.parseInt(priceString);
-		int quantity=Integer.parseInt(quantityString);
-		int tableid=Integer.parseInt(tableNumberString);
-		
-		int id=0;
+		int id = 0;
+		if (idString != null){
+			id= Integer.parseInt(idString);
+		}
 		
 
 		try {
 			Connection con = (Connection)MyConnection.initDB();
 
 			if (submitB!=null){
-				MyConnection.addCart(con,tableid,name, quantity,price);
+				MyConnection.create(con,name,des,price);
 				
 			}else if (editB !=null){
 				MyConnection.edit(con,name,des,price,id);
@@ -75,7 +73,7 @@ public class MenuServlet extends HttpServlet{
 		
 	
 
-		request.getRequestDispatcher("/html/Menu.jsp").forward(request, resp);
+		request.getRequestDispatcher("/html/AddItem.jsp").forward(request, resp);
 				
 		
 	}

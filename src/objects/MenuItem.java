@@ -5,6 +5,7 @@ public class MenuItem{
 	double price;
 	boolean active;
 	
+	
 	public MenuItem(String name, String des, double price, boolean active){
 		this.name=name;
 		this.des=des;
@@ -38,7 +39,8 @@ public class MenuItem{
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
+	
+	
 
 	
 }
