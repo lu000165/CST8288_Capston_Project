@@ -1,5 +1,6 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import ="objects.MenuItem" %>
+<%@ page import ="objects.Menu" %>
 <%@ page import ="javax.servlet.http.HttpServletRequest" %>
 <%@ page import ="javax.servlet.http.HttpServlet" %>
 <%@ page import ="javax.servlet.http.HttpServletResponse" %>
@@ -42,35 +43,25 @@ form {
 </form> 
 <div>
 <% 
-Statement statement = null;
-ResultSet resultSet = null;
-try{
-Connection con = (Connection) MyConnection.initDB();
-statement =con.createStatement();
-String sql ="select * from menu";
-resultSet = statement.executeQuery(sql);
-while(resultSet.next()){
+ArrayList<MenuItem> menuItems = Menu.showAllItems();
+for(MenuItem menuItem : menuItems){
 %>
 
 <form name = "menuItems" action="/CST8288_Capston_Project/Servlet/UpdateMenuServlet">
-ID: <%=resultSet.getInt("id") %></label><br>
+ID: <%=menuItem.getId() %></label><br>
+<input type ="hidden" name ="id" value=<%=menuItem.getId() %>>
 <label>Name</label><br>
-<textarea name="title"  maxlength="60" size="60" rows="1"><%=resultSet.getString("name") %></textarea><br>
+<textarea name="title"  maxlength="60" size="60" rows="1"><%=menuItem.getName() %></textarea><br>
 <label>Description</label><br>
-<textarea name="content" wrap="hard" rows="5" cols="60" maxlength="120"><%=resultSet.getString("description") %></textarea><br>
+<textarea name="content" wrap="hard" rows="5" cols="60" maxlength="120"><%=menuItem.getDes() %></textarea><br>
 <label>Price</label><br>
-<textarea name="price" rows="1"><%=resultSet.getInt("price") %></textarea><br>
+<textarea name="price" rows="1"><%=menuItem.getPrice() %></textarea><br>
 
 <input  type="submit" name = "edit" value="Edit">
 <input  type="submit" name = "delete" value="Delete">
 </form>
-<%
-}
-con.close();
-} catch (Exception e) {
-e.printStackTrace();
-}
-%>
+<%} %>
+
 
 </div>
 

@@ -20,6 +20,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
+import Connection.MenuItemConnection;
 import Connection.MyConnection;
 import objects.OrderLineItem;
 import objects.MenuItem;
@@ -50,17 +51,15 @@ public class UpdateMenuServlet extends HttpServlet{
 		
 
 		try {
-			Connection con = (Connection)MyConnection.initDB();
-
 			if (submitB!=null){
-				MyConnection.create(con,name,des,price);
+				MenuItemConnection.create(name,des,price);
 				
 			}else if (editB !=null){
-				MyConnection.edit(con,name,des,price,id);
+				MenuItemConnection.edit(name,des,price,id);
 
 			}else{
 				System.out.println("delete method");
-				MyConnection.delete(con,id);
+				MenuItemConnection.delete(id);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

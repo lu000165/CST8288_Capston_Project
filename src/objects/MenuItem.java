@@ -1,16 +1,21 @@
 package objects;
 public class MenuItem{
+	int id;
 	String name;
 	String des;
-	double price;
+	int price;
 	boolean active;
 	
 	
-	public MenuItem(String name, String des, double price, boolean active){
+	public MenuItem(int id,String name, String des, int price, boolean active){
+		this.id = id;
 		this.name=name;
 		this.des=des;
 		this.price=price;
 		this.active=active;
+	}
+	public int getId(){
+		return this.id;
 	}
 	
 	public boolean isActive() {
@@ -33,10 +38,10 @@ public class MenuItem{
 	public void setDes(String des) {
 		this.des = des;
 	}
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	

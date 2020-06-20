@@ -59,11 +59,11 @@ public class MenuServlet extends HttpServlet{
 				MyConnection.addCart(con,tableid,name, quantity,price);
 				
 			}else if (editB !=null){
-				MyConnection.edit(con,name,des,price,id);
+				//MyConnection.edit(con,name,des,price,id);
 
 			}else{
 				System.out.println("delete method");
-				MyConnection.delete(con,id);
+				//MyConnection.delete(con,id);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

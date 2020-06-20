@@ -3,19 +3,20 @@ package objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import Connection.MenuItemConnection;
+
 public class Menu{
-	List<MenuItem> items;
+	ArrayList<MenuItem> items;
 	
-	public Menu(List<MenuItem> items) {
-		super();
+	public Menu(ArrayList<MenuItem> items) {
 		this.items = items;
 	}
 
-	public List<MenuItem> getItems() {
+	public ArrayList<MenuItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<MenuItem> items) {
+	public void setItems(ArrayList<MenuItem> items) {
 		this.items = items;
 	}
 	
@@ -29,6 +30,11 @@ public class Menu{
 			}
 		}
 	}
+	public static ArrayList<MenuItem> showAllItems(){
+		ArrayList<MenuItem> menuItems = MenuItemConnection.showAllMenu();
+		return menuItems;
+	}
+
 	
 
 
