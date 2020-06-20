@@ -13,12 +13,22 @@
  
   <servlet>
   <servlet-name>UpdateMenuServlet</servlet-name>
-  <servlet-class>Servlet/UpdateMenuServlet</servlet-class>
+  <servlet-class>Servlet.UpdateMenuServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  <servlet-name>MenuServlet</servlet-name>
+  <servlet-class>Servlet.MenuServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
   <servlet-name>UpdateMenuServlet</servlet-name>
-  <url-pattern>/UpdateMenuServlet</url-pattern>
+  <url-pattern>/Servlet/UpdateMenuServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  <servlet-name>MenuServlet</servlet-name>
+  <url-pattern>/Servlet/MenuServlet</url-pattern>
+  </servlet-mapping>
+  
  
 </web-app>

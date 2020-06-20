@@ -31,6 +31,7 @@ public class MenuServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException{
+		System.out.println("in do get Menu Servelet");
 	
 		
 		String submitB=request.getParameter("addCart");
