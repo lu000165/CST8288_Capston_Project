@@ -82,6 +82,32 @@ public class MenuItemConnection extends MyConnection{
 		statement.executeUpdate(sql);
 		con.close();
 	}
+	public static ArrayList<MenuItem> showActiveMenu() {
+		
+		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+		
+		try {
+			Connection con = (Connection) initDB();
+			Statement statement =(Statement) con.createStatement();
+			String sql ="select * from menuitem where active = 1";
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()){
+				int id = resultSet.getInt(COLUMN_ID);
+				String name = resultSet.getString(COLUMN_NAME);
+				String description = resultSet.getString(COLUMN_DESCIPTION);
+				int price = resultSet.getInt(COLUMN_PRICE);
+				boolean active = resultSet.getInt(COLUMN_active)>0;
+				MenuItem menuItem = new MenuItem(id,name,description,price,active);
+				menuItems.add(menuItem);
+				
+			}
+			con.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return menuItems;
+	}
 	
 	
 }

@@ -12,8 +12,9 @@ public class Menu{
 		this.items = items;
 	}
 
-	public ArrayList<MenuItem> getItems() {
-		return items;
+	public static ArrayList<MenuItem> getItems() {
+		ArrayList<MenuItem> menuItems = MenuItemConnection.showActiveMenu();
+		return menuItems;
 	}
 
 	public void setItems(ArrayList<MenuItem> items) {
