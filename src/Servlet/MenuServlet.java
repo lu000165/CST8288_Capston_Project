@@ -23,6 +23,7 @@ import com.mysql.jdbc.Statement;
 import Connection.MyConnection;
 import objects.OrderLineItem;
 import objects.MenuItem;
+import objects.Order;
 
 //@WebServlet("/postLog")
 public class MenuServlet extends HttpServlet{
@@ -37,41 +38,57 @@ public class MenuServlet extends HttpServlet{
 		String submitB=request.getParameter("addCart");
 		String editB=request.getParameter("edit");
 		String deleteB=request.getParameter("delete");
+		String setTableB = request.getParameter("setTable");
 		
 
 		
-		String tableNumberString =request.getParameter("tableNumber");
-		String name= request.getParameter("title");
-		String des=request.getParameter("content");
-		String priceString= request.getParameter("price");
-		String quantityString =request.getParameter("quantity");
-		int price = Integer.parseInt(priceString);
-		int quantity=Integer.parseInt(quantityString);
-		int tableid=Integer.parseInt(tableNumberString);
+		//String tableNumberString =request.getParameter("tableNumber");
+		//String name= request.getParameter("title");
+		//String des=request.getParameter("content");
+		//String priceString= request.getParameter("price");
+		//String quantityString =request.getParameter("quantity");
+		//int price = Integer.parseInt(priceString);
+		//int quantity=Integer.parseInt(quantityString);
+		//int tableid=Integer.parseInt(tableNumberString);
 		
-		int id=0;
-		
-
-		try {
-			Connection con = (Connection)MyConnection.initDB();
-
-			if (submitB!=null){
-				MyConnection.addCart(con,tableid,name, quantity,price);
-				
-			}else if (editB !=null){
-				//MyConnection.edit(con,name,des,price,id);
-
-			}else{
-				System.out.println("delete method");
-				//MyConnection.delete(con,id);
+		if(!(setTableB == null)){
+			try {
+				String tableNumberString =request.getParameter("tableNumber");
+				int tableNum = Integer.parseInt(tableNumberString);
+				Order newOrder = Order.create(tableNum);
+				request.setAttribute("orderID", newOrder.getOrderNumber());
+				request.setAttribute("tableNumber", newOrder.getTableNumber());
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+		}else if(!(submitB == null)){
+			System.out.println("in add cart");
+			String tableNumberString =request.getParameter("tableNumber");
+			int tableNumber = Integer.parseInt(tableNumberString);
+			String orderIDString = request.getParameter("orderNumber");
+			int orderId = Integer.parseInt(orderIDString);
+			String memuItemString = request.getParameter("itemID");
+			int menuItemId = Integer.parseInt(memuItemString);
+			String quantityString = request.getParameter("quantity");
+			int quantity = Integer.parseInt(quantityString);
+			
+			request.setAttribute("orderID", orderId);
+			request.setAttribute("tableNumber", tableNumber);
+			
+			try {
+				Order.addItem(orderId,tableNumber,menuItemId,quantity);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 		}
+		
+
+
 
 		
 	

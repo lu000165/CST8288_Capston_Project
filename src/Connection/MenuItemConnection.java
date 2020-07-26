@@ -59,7 +59,7 @@ public class MenuItemConnection extends MyConnection{
 		Connection con = (Connection)initDB();
 		Statement statement =(Statement) con.createStatement();
 		
-		String sql = "INSERT INTO `menuitem`( `name`, `description`, `price`) VALUES ( '"+name+ "' , '" +description+ "' ,"+ price+ ")";
+		String sql = "INSERT INTO `menuitem`( "+ COLUMN_NAME+ ", "+COLUMN_DESCIPTION+", "+COLUMN_PRICE+") VALUES ( '"+name+ "' , '" +description+ "' ,"+ price+ ")";
 		System.out.println(sql);
 		statement.executeUpdate(sql);
 		con.close();

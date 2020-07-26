@@ -21,6 +21,15 @@
   <servlet-class>Servlet.MenuServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<servlet-class>Servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<url-pattern>/Servlet/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
   <servlet-name>UpdateMenuServlet</servlet-name>
   <url-pattern>/Servlet/UpdateMenuServlet</url-pattern>
@@ -28,6 +37,15 @@
   <servlet-mapping>
   <servlet-name>MenuServlet</servlet-name>
   <url-pattern>/Servlet/MenuServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>Servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/Servlet/LoginServlet</url-pattern>
   </servlet-mapping>
   
  
